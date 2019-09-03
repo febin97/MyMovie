@@ -107,6 +107,7 @@
             ]
           }
         },
+	"json-server": "json-server --watch db.json",
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {

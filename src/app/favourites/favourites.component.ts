@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MovieService } from '../movie.service';
+import { favourites} from '../favourites';
 
 @Component({
   selector: 'app-favourites',
@@ -8,16 +9,14 @@ import { MovieService } from '../movie.service';
   styleUrls: ['./favourites.component.css']
 })
 export class FavouritesComponent implements OnInit {
-
-  public favourites = {};
-  public reqToken = {};
+  favList : favourites[];
   constructor(private router: Router, private _movieService: MovieService) { }
 
   ngOnInit() {
-    this._movieService.getRequestToken().subscribe(data => this.reqToken = data);
+    this._movieService.getFavourites().subscribe(data => this.favList = data as favourites[]);
   }
-  goToMovie(){
-    this.router.navigate(['./movie',{name:'Avengers'}]);
+  goToMovie(movieId){
+    this.router.navigate(['./movie',{id:movieId}]);
   }
 
 }

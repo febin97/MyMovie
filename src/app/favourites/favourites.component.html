@@ -1,6 +1,14 @@
-<h1>Your Favourites</h1>
-<div (click) = "goToMovie()" style="background: yellow">
-    <h2>The Avengers</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptas alias dolorum quo quod adipisci molestiae odit ipsa sit, doloribus soluta repellat. Quia, facere accusamus! Totam deleniti laudantium aperiam? Esse.</p>
+<br><br>
+<h1>Your Favourites</h1><hr>
+<div class="container">
+    <div class="row">
+        <div *ngFor = "let fav of favList" class="col-md-4 " style="margin-top: 10px;">
+            <div class="card text-center" style="background: rgba(255,255,255, 0.12)">
+                <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{fav.poster_path}}" alt="Card image cap" style="height: 30rem;">
+                    <div class="card-body">
+                        <button (click) = "goToMovie(fav.id)" class="btn btn-dark">Know More</button>
+                    </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>{{reqToken.request_token}}</p>

@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { favourites } from './favourites';
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type':'application/json'})
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +30,23 @@ export class MovieService {
     return this.http.get(search_url);
   }
   getFavourites():any{
-    let search_url = `https://api.themoviedb.org/4/account/5d6772eb6743fa0013d61f3a/favorite/movies?api_key=b2edde3062978e00f939b23cc1cb99a0&language=en-US&sort_by=created_at.asc&page=1`;
+    let search_url = `http://localhost:3000/posts`;
     return this.http.get(search_url);
+  }
+  addFavourites(newFav: favourites):Observable<favourites>{
+    let post_url = `http://localhost:3000/posts`;
+    return this.http.post<favourites>(post_url,newFav,httpOptions);
+  }
+  checkIfFav(id):any{
+    let _url = `http://localhost:3000/posts/${id}`;
+    return this.http.get(_url);
+  }
+  removeFromFavourites(id): any{
+    let _url = `http://localhost:3000/posts/${id}`;
+    return this.http.delete(_url,httpOptions);
+  }
+  updateComments(favObj):any{
+    let _url = `http://localhost:3000/posts/${favObj.id}`;
+    return this.http.put(_url,favObj,httpOptions);
   }
 }
