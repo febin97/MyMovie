@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'movie', component: MovieComponent},
   {path: 'search', component: SearchComponent},
-  {path: 'favourites', component: FavouritesComponent}
+  {path: 'favourites', component: FavouritesComponent},
+  {path: '**', component:PageNotFoundComponent}
 ];
 
 @NgModule({

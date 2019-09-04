@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { favourites } from './favourites';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type':'application/json'})
@@ -25,17 +24,13 @@ export class MovieService {
     let search_url = `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&language=en-US&page=1&include_adult=false&query=${search_query}`
     return this.http.get(search_url);
   }
-  getRequestToken(){
-    let search_url = `https://api.themoviedb.org/3/authentication/token/new?api_key=b2edde3062978e00f939b23cc1cb99a0`;
-    return this.http.get(search_url);
-  }
   getFavourites():any{
     let search_url = `http://localhost:3000/posts`;
     return this.http.get(search_url);
   }
-  addFavourites(newFav: favourites):Observable<favourites>{
+  addFavourites(newFav: favourites):any{
     let post_url = `http://localhost:3000/posts`;
-    return this.http.post<favourites>(post_url,newFav,httpOptions);
+    return this.http.post(post_url,newFav,httpOptions);
   }
   checkIfFav(id):any{
     let _url = `http://localhost:3000/posts/${id}`;

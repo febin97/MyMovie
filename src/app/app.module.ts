@@ -10,6 +10,7 @@ import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { MovieService } from './movie.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MovieService } from './movie.service';
     HomeComponent,
     MovieComponent,
     SearchComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

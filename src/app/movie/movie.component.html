@@ -1,6 +1,6 @@
 <br>
 <div class="jumbotron">   
-<div class="row">
+    <section class="row">
         <div class="col-md-7">
             <h1>{{movie.title}}</h1>
             <h6>{{movie.tagline}}</h6><hr><br>
@@ -21,7 +21,7 @@
                             <div *ngFor = "let comment of favObj.comments; let i=index" style="background: rgba(255,255,255, 0.12)">
                                 <div *ngIf = "comment"> *{{comment}}
                                     <button style="float: right;" (click) = "deleteComment(favObj,i)" class="btn btn-dark">Delete</button>
-                                    <button style="float: right;" (click) = "editComment(i)" class="btn btn-primary">Edit</button>
+                                    <button style="float: right;" (click) = "editComment(i)" class="btn btn-dark">Edit</button>
                                 </div>
                                 <div *ngIf = "tobeEdited && tobeEditedIndex == i;">
                                     <input #commentValEdit type="text" value="{{favObj.comments[i]}}" style="color: black;">
@@ -41,5 +41,5 @@
         <div class="col-md-5">
             <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt = "No image" style="height: 30rem;width: 90%">
         </div>
-    </div>
+    </section>
 </div>

@@ -7,7 +7,7 @@
     </div>
 </form>
 <div class="container">
-    <div class="row">
+    <section class="row">
         <div *ngFor = "let movie of movies.results" class="col-md-4 " style="margin-top: 10px;">
             <div class="card text-center" style="background: rgba(255,255,255, 0.12)">
                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="Card image cap" style="height: 30rem;">
@@ -16,6 +16,6 @@
                     </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
