@@ -18,11 +18,20 @@
                 <ng-template #other_content>
                     <div class="form-group">
                         <ul>Comments: 
-                            <p *ngFor = "let comment of favObj.comments" style="background: rgba(255,255,255, 0.12)"> *{{comment}}</p>
+                            <div *ngFor = "let comment of favObj.comments; let i=index" style="background: rgba(255,255,255, 0.12)">
+                                <div *ngIf = "comment"> *{{comment}}
+                                    <button style="float: right;" (click) = "deleteComment(favObj,i)" class="btn btn-dark">Delete</button>
+                                    <button style="float: right;" (click) = "editComment(i)" class="btn btn-primary">Edit</button>
+                                </div>
+                                <div *ngIf = "tobeEdited && tobeEditedIndex == i;">
+                                    <input #commentValEdit type="text" value="{{favObj.comments[i]}}" style="color: black;">
+                                    <button (click) = editTheComment(favObj,i,commentValEdit.value) style="background: black;">Edit</button>
+                                </div><p></p>
+                            </div>
                         </ul>
                         <div class="row">
-                            <input class = "col-md-9 form-control" #commentInput type="text"><br>
-                            <button class=" col-md-3 btn btn-dark form-control" (click) = "addComment(favObj,commentInput.value)">Add Comments</button>
+                            <input class = "col-md-9 form-control" [(ngModel)] = "commentVal" type="text"><br>
+                            <button class=" col-md-3 btn btn-dark form-control" (click) = "addComment(favObj)">Add Comments</button>
                         </div>
                     </div>
                     <button (click) = "removeFromFav(movie.id)" class="btn btn-dark">Remove From Favourites</button>

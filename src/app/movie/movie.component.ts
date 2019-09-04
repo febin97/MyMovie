@@ -14,8 +14,11 @@ export class MovieComponent implements OnInit {
   public movie={};
   public isFav;
   public favObj = {};
+  public commentVal;
   favourites: favourites[];
+  public tobeEditedIndex;
   public styleObj = {};
+  public tobeEdited = false;
   constructor(private route: ActivatedRoute, private _movieService: MovieService) { }
 
   ngOnInit() {
@@ -42,17 +45,41 @@ export class MovieComponent implements OnInit {
     newFav.title = title;
     newFav.comments = [];
     this._movieService.addFavourites(newFav)
-                    .subscribe();
-    this.ngOnInit();
+                    .subscribe(
+                      ()=>{this.ngOnInit();}
+                    );
   }
   removeFromFav(movieId){
-    this._movieService.removeFromFavourites(movieId).subscribe();
-    this.ngOnInit();
+    this._movieService.removeFromFavourites(movieId).subscribe(
+      ()=>{this.ngOnInit();}
+    );
   }
-  addComment(favObj,comment){
-    favObj.comments.push(comment);
-    this._movieService.updateComments(favObj).subscribe();
-    this.ngOnInit();
+  addComment(favObj){
+    console.log(this.commentVal);
+    favObj.comments.push(this.commentVal);
+    this._movieService.updateComments(favObj).subscribe(
+      ()=>{this.commentVal='';
+      this.ngOnInit();}
+    );
+    
+  }
+ deleteComment(favObj,i){
+    delete(favObj.comments[i]);
+    this._movieService.updateComments(favObj).subscribe(
+      ()=>{this.ngOnInit();}
+    );
+  }
+  editComment(i){
+    this.tobeEdited = true;
+    this.tobeEditedIndex = i;
+  }
+  editTheComment(favObj,i,commentValEdit){
+    favObj.comments[i] = commentValEdit;
+    this._movieService.updateComments(favObj).subscribe(
+      ()=>{
+        this.tobeEdited = false;
+        this.ngOnInit();}
+    );
   }
 
 }
